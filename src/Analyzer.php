@@ -17,6 +17,9 @@ $ast = $parser->parse($code);
 $traverser = new NodeTraverser();
 
 $traverser->addVisitor(new NameResolver());
-$traverser->addVisitor(new CatchVisitor());
+$ast = $traverser->traverse($ast);
 
+$traverser = new NodeTraverser();
+$traverser->addVisitor(new CatchVisitor());
 $traverser->traverse($ast);
+
